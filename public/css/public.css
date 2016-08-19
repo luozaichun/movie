@@ -1,0 +1,235 @@
+@charset "utf-8";
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #333;
+    font: inherit;
+    font-size: 12px;
+    font-family: "microsoft yahei",arial,Simsun,Verdana ;
+}
+ol,ul {  list-style: none;}
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; vertical-align: middle;}
+q,blockquote {quotes: none;}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after { content: ""; content: none;}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+a img { border: none;  }
+a { text-decoration: none; font-weight: inherit; font-size: inherit; font-family: inherit; font-style: inherit;}
+a:hover { text-decoration: none; }
+a:focus {outline:none;-moz-outline:none;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden; }
+.clearfix { zoom: 1; }
+.b {font-weight: bold}
+.disn{display:none;}
+.disB{display:block; !important;}
+i, em {  font-style: normal;  font-weight: normal;  display: inline-block;  }
+.fl {float: left;}
+.fr {float: right;}
+.po_r {position: relative;}
+.po_a {position: absolute;}
+.co_9 {color: #999;}
+.co_6 {color: #666;}
+.co_3 {color: #333;}
+.user_select_n {-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+h1,h2,h3,h4,h5,h6{font-size:100%; font-weight: normal;}
+ul,ol{list-style:none outside none;}
+fieldset,img{border:0 none;}
+img{vertical-align:middle}
+button,
+input,
+select,
+textarea {
+    font-size:100%;
+}
+input{
+    outline: none
+}
+table{border-collapse:collapse;border-spacing:0;}
+html{ _background-image:url(about:blank); _background-attachment:fixed;}
+/* 单行文字溢出虚点显示*/
+.ell { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+/*  多行溢出隐藏 */
+.l-ell {
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    /* 几行隐藏 */
+    -ms-line-clamp: 2;
+    -moz-line-clamp: 2;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+.rgba-8{
+    background: rgba(0,0,0,.8);filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#c8393939,endColorStr=i#c8393939)
+}
+/*
+         小图标 通用法
+         width: 24px;height: 24px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -25px -2px;vertical-align: -2px;
+         border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px
+*/
+/*reset end*/
+/*header 头部*/
+.header,.head{width: 100%;height: 90px;border-bottom: 1px solid #e6e6e6;background-color: #fff;transition: all .3s;}
+.head{
+    position: fixed;
+    top:0;
+    z-index: 9999;
+}
+.header-c{width: 1140px;margin: 0 auto;position: relative;height: 89px;}
+.header-c .logo{width: 193px;height: 46px;position: absolute;top: 25px;left: 0px;transition: all .3s;}
+
+.header-c .logo a {display:block;width: 193px;height: 46px;text-indent:-99em;white-space:nowrap;overflow:hidden; background:url("../images/logo.png") no-repeat;transition:all .25s;-moz-background-size:contain;-o-background-size:contain;background-size:contain;}
+
+
+.header-c .logo img{width: 100%;height: 100%}
+.header-c .nav{position: absolute;top: 0;left: 258px;}
+.header-c .nav ul li{float: left;display: inline-block;*display:inline;zoom: 1;margin: 0 15px;position: relative}
+.header-c .nav ul li a{display: inline-block;height: 70px;color: #333;font-size: 18px;text-align: center;padding-top: 20px;transition: all .3s;margin: 0 10px;min-width: 64px;}
+.header-c .nav ul li a span{font-size: 10px;color: #666;font-family: arial;display:block}
+.header-c .nav ul li a:hover{text-decoration: none}
+.header-c .nav ul li i.dian{width: 4px;height: 4px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -311px -64px;position: absolute;top: 37px;right: -15px;}
+.header-c .nav ul li i.line{position: absolute;width: 0;height: 5px;background: #0b9dff;display: block;left: 0;top: 0;-webkit-transition: all .2s ease-out;-moz-transition: all .2s ease-out;-ms-transition: all .2s ease-out;-o-transition: all .2s ease-out;transition: all .2s ease-out;}
+.header-c .nav ul li:hover i.line{width: 100%}
+
+.header-c .search-box{position: absolute;top: 27px;right: 0px;width: 260px;height: 36px;background: url("../images/search-box.png") no-repeat;display: block;transition: all .3s;}
+.header-c .search-box .search{width: 180px;height: 26px;position: absolute;left: 18px;top: 4px;line-height: 26px;border: none;color: #333;}
+.header-c .search-box .search-ico{width: 20px;;height: 20px;position: absolute;right: 18px;top: 7px;background: url("../images/ico.png") no-repeat;background-position: -579px -64px;display: block;border: none;cursor: pointer}
+.header-c .search-box .search-ico:hover{background-position: -579px -84px;}
+/*导航跟随滚动*/
+
+.small-header{width: 100%;height: 50px;border-bottom: 1px solid #1a1a1a;background-color: #1a1a1a;transition: all .3s;z-index: 99999}
+.small-header .header-c{width: 1140px;margin: 0 auto;position: relative;height: 50px;}
+.small-header .header-c .logo{width: 134px;height: 32px;position: absolute;top: 11px;left: 0px;transition: all .3s;}
+.header.small-header .header-c .logo a,.head.small-header .header-c .logo a{display: block; width: 134px;height: 32px; text-indent: -99em; white-space: nowrap; overflow: hidden; background: url("../images/logo-small.png") no-repeat; transition: all .25s; -moz-background-size: contain; -o-background-size: contain; background-size: contain;}
+.small-header .header-c .logo img{width: 100%;height: 100%}
+.small-header .header-c .nav{position: absolute;top: 0;left: 200px;}
+.small-header .header-c .nav ul li{float: left;display: inline-block;*display:inline;zoom: 1;margin: 0 15px;position: relative}
+.small-header .header-c .nav ul li a{display: inline-block;height: 38px;color: #fff;font-size: 14px;text-align: center;padding-top: 10px;transition: all .3s;margin: 0 8px;min-width: 54px;}
+.small-header .header-c .nav ul li a span{font-size: 10px;color: #999;font-family: arial;display:block}
+.small-header .header-c .nav ul li a:hover{text-decoration: none}
+.small-header .header-c .nav ul li i.dian{width: 4px;height: 4px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -311px -64px;position: absolute;top: 24px;right: -15px;}
+.small-header .header-c .nav ul li i.line{position: absolute;width: 0;height: 2px;background: #0b9dff;display: block;left: 0;top: 0;-webkit-transition: all .2s ease-out;-moz-transition: all .2s ease-out;-ms-transition: all .2s ease-out;-o-transition: all .2s ease-out;transition: all .2s ease-out;}
+.small-header .header-c .nav ul li:hover i.line{width: 100%}
+
+.small-header .header-c .search-box{position: absolute;top: 11px;right: 0px;width: 217px;height: 30px;background: url("../images/search-box-small.png") no-repeat;display: block;transition: all .3s;}
+.small-header .header-c .search-box .search{width: 170px;height: 20px;position: absolute;left: 18px;top: 4px;line-height: 20px;border: none;color: #999; background: none;}
+.small-header .header-c .search-box .search-ico{width: 20px;;height: 20px;position: absolute;right: 14px;top: 5px;background: url("../images/ico.png") no-repeat;background-position: -579px -64px;display: block;border: none;cursor: pointer}
+.small-header .header-c .search-box .search-ico:hover{background-position: -579px -84px;}
+
+/*底部 footer*/
+.foot .copyright {width: 100%; height: 50px; margin:0px auto; text-align: center;overflow: hidden;  padding: 5px 0px; background:#121212;}
+.foot .copyright li {color:#666; line-height:20px; text-align: center;}
+.foot .copyright li a { color: #666; margin: 0px 10px; font-weight:normal;font-size: 12px;}
+.census a { display:none !important;}
+.foot a:hover{ text-decoration:underline;}
+
+
+.bg-tm{
+    background-color: #000;
+    opacity: 0.85;
+    -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=85)';
+    filter:alpha(opacity=85);
+}

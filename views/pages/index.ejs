@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title><%=title%></title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/css/public.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+<body>
+<!--顶部 header-->
+<div class="header">
+    <div class="header-c">
+        <div class="logo"><a href="" title=""></a></div>
+        <div class="nav">
+            <ul class="clearfix">
+                <li class="on"><a href="">资源<span>RESOURCES</span></a><i class="line"></i><i class="dian"></i></li>
+                <li class=""><a href="">资讯<span>NEWS</span></a><i class="line"></i><i class="dian"></i></li>
+                <li class=""><a href="">专题<span>COLUMN</span></a><i class="line"></i><i class="dian"></i></li>
+                <li class=""><a href="">视频<span>VIDEO</span></a><i class="line"></i></li>
+            </ul>
+        </div>
+        <form class="search-box">
+            <input class="search " type="text"  value="商品搜索" onfocus="if (value =='商品搜索'){value =''}" onblur="if (value ==''){value='商品搜索'}">
+            <input class="search-ico " type="submit" value="">
+        </form>
+    </div>
+</div>
+<!--广告位-->
+<div class="ad-box-2">
+    <a href=""><div class="ad-2"></div></a>
+</div>
+<div class="mod-download">
+    <div class="wrap clearfix">
+
+        <div class="d-tab">
+            <ul class="dtab-nav clearfix" id="dtab-nav">
+                <li class="active">
+                    <a href="" ><i class="gx"></i>最新更新</a>
+                </li>
+                <li class="">
+                    <a href="" ><i class="rm"></i>人气热门</a>
+                </li>
+            </ul>
+            <div class="dtab-container" id="dtab-container">
+                <div class="tab">
+                    <ul class="down-list clearfix">
+                    <% movies.forEach(function (item) {%>
+                        <li>
+                            <a href="/movie/<%=item._id%>">
+                                <div class="item">
+                                    <img src="<%=item.poster%>">
+                                    <div class="mark"></div>
+                                    <p class="item-name ell"><%=item.title%></p>
+                                    <p class="item-text">
+                                        <em>
+                                            <i class="ico-1"></i>
+                                            <i class="ico-2"></i>
+                                        </em>
+
+                                    </p>
+                                    <p class="item-score">
+                                        <i class="ico-3"></i>
+                                        <%=item.play_num%>次播放
+                                    </p>
+                                    <p class="actor">主演：<%=item.actor%></p>
+                                </div>
+                            </a>
+                        </li>
+                    <% }) %>
+
+                    </ul>
+                    <div class="paging">
+                        <span class="p-count">120条</span>
+                        <a href="" class="previous">上一页</a>
+                        <a href="" class="next">下一页</a>
+                        <ul class="clearfix">
+                            <li>
+                                <a href="" class="page-num active">1</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">2</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">3</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">4</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">5</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">6</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">7</a>
+                            </li>
+
+                            <li>
+                                <a href="" class="page-num">8</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">9</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">10</a>
+                            </li>
+                            <li>
+                                ...
+                            </li>
+
+                            <li>
+                                <a href="" class="page-num">12</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab">
+                    <ul class="down-list clearfix">
+                        <% movies.forEach(function (item) {%>
+                        <li>
+                            <a href="/movie/<%=item._id%>">
+                                <div class="item">
+                                    <img src="<%=item.poster%>">
+                                    <div class="mark"></div>
+                                    <p class="item-name ell"><%=item.title%></p>
+                                    <p class="item-text">
+                                        <em>
+                                            <i class="ico-1"></i>
+                                            <i class="ico-2"></i>
+                                        </em>
+
+                                    </p>
+                                    <p class="item-score">
+                                        <i class="ico-3"></i>
+                                        <%=item.play_num%>次播放
+                                    </p>
+                                    <p class="actor">主演：<%=item.actor%></p>
+                                </div>
+                            </a>
+                        </li>
+                        <% }) %>
+                    </ul>
+                    <div class="paging">
+                        <span class="p-count">120条</span>
+                        <a href="" class="previous">上一页</a>
+                        <a href="" class="next">下一页</a>
+                        <ul class="clearfix">
+                            <li>
+                                <a href="" class="page-num active">1</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">2</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">3</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">4</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">5</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">6</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">7</a>
+                            </li>
+
+                            <li>
+                                <a href="" class="page-num">8</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">9</a>
+                            </li>
+                            <li>
+                                <a href="" class="page-num">10</a>
+                            </li>
+                            <li>
+                                ...
+                            </li>
+
+                            <li>
+                                <a href="" class="page-num">12</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--底部 footer-->
+<div class="foot">
+    <ul class="copyright">
+        <li>
+            <a href="/about/" target="_blank" rel="nofollow">关于我们</a> |
+            <a href="/statement/" target="_blank" rel="nofollow">免责声明</a> |
+            <a href="/contact/" target="_blank" rel="nofollow">联系我们</a> |
+            <a href="/ruanwen/" target="_blank" rel="nofollow">软文投稿</a> |
+            <a href="/hezuo/" target="_blank" rel="nofollow">商务合作</a> |
+            <a href="/sitemap/" target="_blank">网站地图</a>
+            <br>Copyright 2015 <a href="http://www.93636.com" target="_blank">93636手游网</a> 版权所有  闽ICP备14017636号-2  厦门米冠网络科技有限公司
+
+            <br>
+        </li>
+    </ul>
+</div>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/javascripts/javascript.js"></script>
+
+</body>
+</html>
