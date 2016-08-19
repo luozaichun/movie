@@ -941,7 +941,7 @@ a.article-out {color: #999; }
 
 /*下载页*/
 .mod-download{
-    width: 1140px;margin: 0 auto;
+    width: 1120px;margin: 0 auto;
 }
 .mod-download .mod-filter{
     border: 1px solid #dddddd;
@@ -1028,7 +1028,7 @@ a.article-out {color: #999; }
 .d-tab .dtab-container{margin-top: 20px;}
 .d-tab .dtab-container .tab{margin-top: 20px;}
 .d-tab .dtab-container .down-list { width: 105%; }
-.d-tab .dtab-container .down-list li{float: left;*display:inline;margin-right: 30px;margin-bottom: 30px;}
+.d-tab .dtab-container .down-list li{float: left;*display:inline;margin-right: 29px;margin-bottom: 30px;}
 .down-list li a .item{position: relative;overflow: hidden;width: 200px;height: 300px;}
 .down-list li a{display: block; width: 200px;height: 300px; float: left;}
 .down-list li a .item img{ width: 200px;height: 300px;}
@@ -1050,17 +1050,21 @@ a.article-out {color: #999; }
 .down-list li a .item .item-lx{width: 193px;height: 34px;line-height: 34px;color: #fff;position: absolute;bottom: 0;left: 0;text-align: right;padding-right: 7px;}
 .down-list li a .item .item-score{position: absolute;left: 16px;font-size: 12px;color: #fff}
 .down-list li a .item .item-score i{width: 14px;height: 14px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -464px -181px;vertical-align: -2px;}
-.item-text,.down-list li a .item .item-score,.down-list li a .actor{ width: 100%; position: absolute; bottom: -70px;
+.item-text,.down-list li a .item .item-score,.down-list li a .actor{position: absolute; bottom: -70px;
 -webkit-transition: all .5s;
    -moz-transition: all .5s;
     -ms-transition: all .5s;
      -o-transition: all .5s;
         transition: all .5s;
 }
-.item-text em { width: 95px; height: 65px; float: left; position: relative;}
+.item-text{
+    width: 46px;height: 46px;left: 50%;margin-left: -23px;
+}
+.item-text em {width: 46px;height: 46px;
+    }
 
-.item-text em i.ico-1{display: block;position: absolute;top: 0;left: 17px; width: 63px;height: 63px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -115px 0px;}
-.item-text em i.ico-2{display: block;position: absolute;top: 0;left: 15px; width: 63px;height: 63px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -50px -0px;}
+.item-text em i.ico-1{ width: 46px;height: 46px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -162px -112px;}
+.item-text em i.ico-2{position: absolute;top: 15px;left: 16px; width: 16px;height: 16px;display: inline-block;background: url("../images/ico.png") no-repeat;background-position: -259px -112px;}
 .down-list li a .item .actor {color: #fff; height: 42px; line-height: 20px;position: absolute;
     left: 16px;
     font-size: 12px;
@@ -1070,15 +1074,15 @@ a.article-out {color: #999; }
     bottom: 66px;
 }
 
-.down-list li a:hover .item-text { bottom: 127px; }
+.down-list li a:hover .item-text { bottom: 142px; }
 .down-list li a:hover .item .mark { top: 0; }
 .down-list li a:hover .item .item-name {bottom: 220px; display: block}
 .down-list li a:hover .item-text em i.ico-1{
-     -webkit-animation: arrow 1s .1s infinite linear both;
-    -moz-animation: arrow 1s .1s infinite linear both;
-    -ms-animation: arrow 1s .1s infinite linear both;
-    -o-animation: arrow 1s .1s infinite linear both;
-    animation: arrow 1s .1s infinite linear both;
+     -webkit-animation: rotateInFiniteOne 1.5s .1s infinite linear both;
+    -moz-animation: rotateInFiniteOne 1.5s .1s infinite linear both;
+    -ms-animation: rotateInFiniteOne 1.5s .1s infinite linear both;
+    -o-animation: rotateInFiniteOne 1.5s .1s infinite linear both;
+    animation: rotateInFiniteOne 1.5s .1s infinite linear both;
 }
 .down-list li a:hover .item .item-score{bottom: 66px;}
 
