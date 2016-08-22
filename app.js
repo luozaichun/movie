@@ -10,7 +10,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-app.listen(8080,'127.0.0.1');
+app.listen(8090,'127.0.0.1');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/pages'));
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
-app.use('/', routes);
+app.use('/', routes);//app.use 加载用于处理http請求的middleware（中间件），当一个请求来的时候，会依次被这些 middlewares处理。
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -57,6 +57,7 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+
 });
 
 
