@@ -3,14 +3,14 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');//表单数据格式化
-
+var bodyParser = require('body-parser');//表单数据格式化,bodyParser中间件用来解析http请求体，是express默认使用的中间件之一。获取表单请求
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-app.listen(8090,'127.0.0.1');
+mongoose.connect('mongodb://localhost/movie');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/pages'));
@@ -20,8 +20,11 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(logger('dev'));
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));//获取表单请求，解析数据。
+
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
@@ -34,7 +37,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
+app.locals.moment=require('moment');
 // error handlers
 
 // development error handler

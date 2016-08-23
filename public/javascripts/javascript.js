@@ -25,20 +25,7 @@ function reset_topmenu_top(topmenu, topmenu_top) {
     }
 }
 
-/*友情链接*/
-var link_index=1;
-var ah=parseInt($("#links_box a").height());
-var c=parseInt($("#links_box").height())/ah;
-var d=parseInt($("#links_box").height())%ah;
-$(".friendly_swiper .swiper-button-next").click(function(){
-    var t=parseInt(-ah*link_index)+'px';
-    if(link_index<(c+d)){
-        jQuery("#links_box").stop(true).animate({top:t},300);
-        link_index++;
-    }else{
-        return
-    }
-});
+
 $(".friendly_swiper .swiper-button-prev").click(function(){
     var t=parseInt(-ah*link_index+ah*2)+'px';
     if(link_index>1){
@@ -50,36 +37,6 @@ $(".friendly_swiper .swiper-button-prev").click(function(){
 });
 
 /* 热门游戏 热门视频 切换*/
-$(function(){
-    $(".hot-game li").hover(function(){
-        $(this).addClass("on").siblings().removeClass("on");
-        $(this).find(".phitem2").addClass("disn");
-        $(this).siblings().find(".phitem2").removeClass("disn");
-        $(this).siblings().find(".phitem").addClass("disn");
-    });
-    $(".hot-video li").hover(function(){
-        $(this).addClass("on").siblings().removeClass("on");
-    });
-    $(".hot-video li").hover(function(){
-        $(this).find(".tit1").addClass("rotateInFiniteTwo");
-    },function(){
-        $(this).find(".tit1").removeClass("rotateInFiniteTwo");
-    });
-
-    $(".video-b-r ul li").hover(function(){
-        $(this).find(".ico-1").addClass("rotateInFiniteOne");
-    },function(){
-        $(this).find(".ico-1").removeClass("rotateInFiniteOne");
-    });
-
-    $('#article-yzm').focus(function(){
-        $('#yzm-win').show();
-    });
-    $('#article-yzm').blur(function(){
-        $('#yzm-win').delay(2000).hide(0);
-    });
-
-});
 $(window).scroll( function() {
   var scrollValue=$(window).scrollTop();
   scrollValue > 150 ? $('.js-scroll').css({
@@ -121,7 +78,6 @@ $(window).scroll( function() {
         $("#dtab-container").find(".tab").eq(parseInt($(this).index())).fadeIn(500).siblings().hide();
         return false;
     });
-
 
 
 })(window);

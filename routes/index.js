@@ -1,10 +1,8 @@
 var express = require('express');
 var router = express.Router();//路由
-var mongodb=require('mongodb');
-var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/movie');
-var Movie=require('../models/movie');
+
+var Movie=require('../models/movie');//数据库模块
 var _=require('underscore');
 //首页
 router.get('/',function (req,res) {
@@ -16,6 +14,7 @@ router.get('/',function (req,res) {
     res.render('index',{
       title:'电影首页',
       movies: movies
+    
       // [
       //   {
       //   title:'最后的巫师猎人',
@@ -68,6 +67,7 @@ router.get('/',function (req,res) {
       //   }
       // ]
     })
+    console.log(movies)
   });
 
 
@@ -75,6 +75,7 @@ router.get('/',function (req,res) {
 
 //列表页
 router.get('/movie/list',function (req,res) {
+
   Movie.fetch(function (err,movies) {
     if(err){
       console.log(err);
@@ -91,19 +92,32 @@ router.get('/movie/list',function (req,res) {
       // }]
     })
   });
-
+  //list delete
+  var id=req.query.id;
+  console.log(id)
+  if(id){
+    Movie.remove({_id:id},function (err,movies) {
+      if (err){
+        console.log(err);
+      }else{
+        res.json({
+          success:1
+        })
+      }
+    })
+  }
 });
 
 //电影详细页
 router.get('/movie/:id',function (req,res) {
-  var id=req.params.id;
+  var id=req.params.id;//获取参数
   Movie.findById(id,function (err,movie) {
     if(err){
       console.log(err);
     }
     res.render('detail',{
       title:'电影详情页',
-      movies: movie
+      movie: movie
     })
   });
 
@@ -137,26 +151,16 @@ router.get('/admin/update/:id',function (req,res) {
 });
 
 
-//拿到后台过来的数据
+//拿到前台过来的数据
 router.post('/admin/movie/new',function (req,res) {
-  var id=req.body.movie._id;//判断是否已经存在改影片
-  var movieObj=req.body.movie;
-  var _movie;
-  if (id!=undefined){
-    Movie.findById(id,function (err,movie) {
-      if (err){
-        console.log(err)
-      }
-      _movie=_.extend(movie,movieObj);
-      _movie.save(function (err,movie) {
-        if (err){
-          console.log(err)
-        }
-        res.redirect('/movie/'+movie._id)
 
-      })
-    })
-  }else{
+  var id=req.body._id;//判断是否已经存在改影片
+  var movieObj=req.body;//获取表单请求，解析数据。
+
+  var _movie;
+
+  if (id!=undefined){//前台提交的时候,如果id不是undefined,切在mongo中不存在这条数据,就会出这问题~直接nodejs服务崩溃了
+
     _movie=new Movie({
       title:movieObj.title,
       doctor:movieObj.doctor,
@@ -167,12 +171,28 @@ router.post('/admin/movie/new',function (req,res) {
       flash:movieObj.flash,
       poster:movieObj.poster
     });
+
     _movie.save(function (err,movie) {
       if (err){
         console.log(err)
       }
       res.redirect('/movie/'+movie._id)
 
+    })
+  }
+  else{
+    Movie.findById(id,function (err,movie) {
+      if (err){
+        console.log(err)
+      }
+      _movie=_.extend(movie,movieObj);//将数据合并，因为id式自动生成的，不会存在合并之后id有变化
+      _movie.save(function (err,movie) {
+        if (err){
+          console.log(err)
+        }
+        res.redirect('/movie/'+movie._id)
+
+      })
     })
   }
 
@@ -190,17 +210,17 @@ router.post('/admin/movie/new',function (req,res) {
 //后台录入页
 router.get('/admin/movie',function (req,res) {
   res.render('admin',{
-    title:'后台录入页',
-    movies:{
-      title:'',
-      doctor:'',
-      country:'',
-      language:'',
-      flash:'',
-      poster:'',
-      year:'',
-      summary:''
-    }
+    title:'后台录入页'
+    // movies:{
+    //   title:'',
+    //   doctor:'',
+    //   country:'',
+    //   language:'',
+    //   flash:'',
+    //   poster:'',
+    //   year:'',
+    //   summary:''
+    // }
   })
 });
 
