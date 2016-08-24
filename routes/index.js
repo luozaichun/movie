@@ -3,7 +3,8 @@ var router = express.Router();//路由
 
 
 var Movie=require('../models/movie');//数据库模块
-var _=require('underscore');
+var _=require('underscore');//停止循环，更加方便的写代码
+
 //首页
 router.get('/',function (req,res) {
   //调动movie的模型
@@ -76,26 +77,27 @@ router.get('/',function (req,res) {
 //列表页
 router.get('/movie/list',function (req,res) {
 
-  Movie.fetch(function (err,movies) {
-    if(err){
-      console.log(err);
-    }
-    res.render('list',{
-      title:'电影列表页',
-      movies: movies
-      //     [{
-      //   _id:1,
-      //   title:'最后的巫师猎人',
-      //   doctor:'布瑞克·埃斯纳尔',
-      //   country:'美国',
-      //   year:'2016'
-      // }]
-    })
-  });
-  //list delete
   var id=req.query.id;
-  console.log(id)
-  if(id){
+  console.log(id);
+  if (id==undefined){
+    Movie.fetch(function (err,movies) {
+      if(err){
+        console.log(err);
+      }
+      res.render('list',{
+        title:'电影列表页',
+        movies: movies
+        //     [{
+        //   _id:1,
+        //   title:'最后的巫师猎人',
+        //   doctor:'布瑞克·埃斯纳尔',
+        //   country:'美国',
+        //   year:'2016'
+        // }]
+      })
+    });
+  }else{
+    //list delete
     Movie.remove({_id:id},function (err,movies) {
       if (err){
         console.log(err);
@@ -106,11 +108,15 @@ router.get('/movie/list',function (req,res) {
       }
     })
   }
+
+
 });
+
+
 
 //电影详细页
 router.get('/movie/:id',function (req,res) {
-  var id=req.params.id;//获取参数
+  var id=req.params.id;//获取参数,（get方法）
   Movie.findById(id,function (err,movie) {
     if(err){
       console.log(err);
@@ -181,11 +187,12 @@ router.post('/admin/movie/new',function (req,res) {
     })
   }
   else{
-    Movie.findById(id,function (err,movie) {
+    Movie.findById(id,function (err,movie) {//回调方法，拿到数据库中找的movie。
       if (err){
         console.log(err)
       }
-      _movie=_.extend(movie,movieObj);//将数据合并，因为id式自动生成的，不会存在合并之后id有变化
+     
+      _movie=_.extend(movie,movieObj);//将数据合并，因为id式自动生成的，不会存在合并之后id有变化,
       _movie.save(function (err,movie) {
         if (err){
           console.log(err)

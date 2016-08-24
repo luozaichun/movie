@@ -47,23 +47,20 @@
 <script src="/jquery/dist/jquery.min.js"></script>
 <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
 <script >
-    $('.del').on('click',function (e) {
-        var target=$(e.target);
-        console.log(target)
-        var id=target.data('id');
+    $('.del').on('click',function () {
+        var id=$(this).attr('data-id')
         var tr=$('.item-id-'+id);
-        console.log(111)
-        $.ajax({
-            type:'GET',
-            url:'/movie/list?id'+id,
-            success:function (result) {
-                if(result.success==1){
-                    if (tr.length>0){
-                        tr.remove();
-                    }
-                }
-            }
-        })
+      $.ajax({
+          type:'GET',
+          url:'/movie/list?id='+id,
+          success:function (result) {
+              if(result.success==1){
+                  if (tr.length>0){
+                      tr.remove();
+                  }
+              }
+          }
+      })
     })
 </script>
 </body>
