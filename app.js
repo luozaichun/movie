@@ -3,7 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');//表单数据格式化,bodyParser中间件用来解析http请求体，是express默认使用的中间件之一。获取表单请求
+var bodyParser = require('body-parser');//表单数据格式化,bodyParser中间件用来解析http请求体，是express默认使用的中间件之一。获取表单请求，将body里面的东西初始化一个对象
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
@@ -11,6 +11,7 @@ var users = require('./routes/users');
 
 var app = express();
 mongoose.connect('mongodb://localhost/movie');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/pages'));
@@ -28,8 +29,9 @@ app.use(bodyParser.urlencoded({ extended: false }));//获取表单请求，解�
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
 app.use('/', routes);//app.use 加载用于处理http請求的middleware（中间件），当一个请求来的时候，会依次被这些 middlewares处理。
-app.use('/users', users);
+app.use('/users', users);//app.use相当于启动
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

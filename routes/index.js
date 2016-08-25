@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();//路由
-
-
-var Movie=require('../models/movie');//数据库模块
+var Movie=require('../models/movie');//数据库中movie表模块
 var _=require('underscore');//停止循环，更加方便的写代码
 
 //首页
@@ -67,10 +65,9 @@ router.get('/',function (req,res) {
       //     play_num:"52.7万"
       //   }
       // ]
-    })
-    console.log(movies)
+    });
+   
   });
-
 
 });
 
@@ -116,7 +113,8 @@ router.get('/movie/list',function (req,res) {
 
 //电影详细页
 router.get('/movie/:id',function (req,res) {
-  var id=req.params.id;//获取参数,（get方法）
+  var id=req.params.id;
+  //获取参数,（get方法），其中param是express里面对body，query,和路由三种方式的封装；但是要注意弄清楚她拿到的是哪个里面的数据，一般优先级,它会先去查看路由里面的的数据，再查看body里面的，最后再去拿query的。
   Movie.findById(id,function (err,movie) {
     if(err){
       console.log(err);
@@ -135,8 +133,6 @@ router.get('/movie/:id',function (req,res) {
       // summary:'考尔德（范·迪塞尔 Vin Diesel 饰）是一名女巫猎人，在黒巫后的诅咒之下，他得到了不灭的灵魂和不朽的躯体。永生带来的痛苦远远大于欢愉，在孤独和绝望之中，考尔德度过了漫长的时光，然而，他却从未放弃过身为一名巫师猎人所应尽的职责，他知道，女巫并没有绝迹，一个巨大的阴谋正在阴影里缓慢酝酿。果不其然，黒巫后得到了能够使自己复活的秘术，与此同时，各地的女巫们亦按耐不住，纷纷蠢蠢欲动，妄图实现消灭人类统治世界的野心。考尔德和助手多兰（伊利亚·伍德 Elijah Wood 饰）想要面对繁杂而又强大的对手，必须得到善良女巫克洛伊（萝斯·莱斯利 Rose Leslie 饰）的帮助。一场恶战即将拉开序幕。',
       // flash:'http://static.youku.com/v1.0.0647/v/swf/player_yknpsv.swf',
       // poster:'http://r1.ykimg.com/05160000568231DE67BC3C3A0203D5A2'
-
-
 });
 
 
@@ -191,7 +187,6 @@ router.post('/admin/movie/new',function (req,res) {
       if (err){
         console.log(err)
       }
-     
       _movie=_.extend(movie,movieObj);//将数据合并，因为id式自动生成的，不会存在合并之后id有变化,
       _movie.save(function (err,movie) {
         if (err){
@@ -202,15 +197,8 @@ router.post('/admin/movie/new',function (req,res) {
       })
     })
   }
-
-
-
+  
 });
-
-
-
-
-
 
 
 
@@ -230,6 +218,7 @@ router.get('/admin/movie',function (req,res) {
     // }
   })
 });
+
 
 
 module.exports = router;

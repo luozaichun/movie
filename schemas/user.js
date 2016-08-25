@@ -23,13 +23,13 @@ var UserSchema=new mongoose.Schema({
 
 UserSchema.pre("save",function (next) {//每次存数据之前都会调用该方法
     var user=this;
+    console.log(this);
     if(this.isNew){//数据是否新加
         this.meta.createAt=this.meta.updateAt=Date.now();
     }else{
         this.meta.updateAt=Date.now();
     }
     bcrypt.genSalt(SALT_WORK_FACTOR,function (err,salt) {
-
         if(err){
             return next(err);
         }
@@ -38,10 +38,9 @@ UserSchema.pre("save",function (next) {//每次存数据之前都会调用该方
                 return next(err)
             }
             user.password=hash;
-            next();
-        })
+           
+        });
     });
-
     next();//调用next，将存储流程走下去，直到你运行下一次next()，内部处于暂停状态，但不影响外部运行。
 });
 UserSchema.statics={

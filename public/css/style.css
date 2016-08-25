@@ -1650,6 +1650,9 @@ a.article-out {color: #999; }
 .hidden{
     display: none !important;
 }
+.modal{
+    top:10% !important;
+}
 /* css3*动画*/
 
 .grow-width {
