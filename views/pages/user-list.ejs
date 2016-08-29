@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <title><%=title%></title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+<h1><%= title %></h1>
+<div class="container">
+    <div class="row">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>用户名</th>
+                <th>录入时间</th>
+                <th>查看</th>
+                <th>更新</th>
+                <th>删除</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% users.forEach(function (item) {%>
+            <tr class="item-id-<%=item._id%>">
+                <td><%=item.name%></td>
+                <td><%=moment(item.meta.updateAt).format('YYYY/MM/DD HH:mm:ss')%></td>
+                <td><a target="_blank" href="../movie/<%=item._id%>">查看</a></td>
+                <td><a target="_blank" href="../admin/update/<%=item._id%>">修改</a></td>
+                <td>
+                    <button type="button" class="btn btn-danger del" data-id="<%=item._id%>">删除</button>
+                </td>
+            </tr>
+            <% })%>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script >
+    $('.del').on('click',function () {
+        var id=$(this).attr('data-id')
+        var tr=$('.item-id-'+id);
+        $.ajax({
+            type:'GET',
+            url:'/users/list?id='+id,
+            success:function (result) {
+                if(result.success==1){
+                    if (tr.length>0){
+                        tr.remove();
+                    }
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

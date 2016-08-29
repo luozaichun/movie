@@ -124,30 +124,24 @@ router.get('/movie/:id',function (req,res) {
       movie: movie
     })
   });
-
-      // title:'最后的巫师猎人',
-      // doctor:'布瑞克·埃斯纳尔',
-      // country:'美国',
-      // language:'英语',
-      // year:'2016',
-      // summary:'考尔德（范·迪塞尔 Vin Diesel 饰）是一名女巫猎人，在黒巫后的诅咒之下，他得到了不灭的灵魂和不朽的躯体。永生带来的痛苦远远大于欢愉，在孤独和绝望之中，考尔德度过了漫长的时光，然而，他却从未放弃过身为一名巫师猎人所应尽的职责，他知道，女巫并没有绝迹，一个巨大的阴谋正在阴影里缓慢酝酿。果不其然，黒巫后得到了能够使自己复活的秘术，与此同时，各地的女巫们亦按耐不住，纷纷蠢蠢欲动，妄图实现消灭人类统治世界的野心。考尔德和助手多兰（伊利亚·伍德 Elijah Wood 饰）想要面对繁杂而又强大的对手，必须得到善良女巫克洛伊（萝斯·莱斯利 Rose Leslie 饰）的帮助。一场恶战即将拉开序幕。',
-      // flash:'http://static.youku.com/v1.0.0647/v/swf/player_yknpsv.swf',
-      // poster:'http://r1.ykimg.com/05160000568231DE67BC3C3A0203D5A2'
 });
 
 
 //更新页面
 router.get('/admin/update/:id',function (req,res) {
   var id=req.params.id;
+
   if (id){
     Movie.findById(id,function (err,movie) {
       if(err){
         console.log(err)
       }
+      console.log(id);
       res.render('admin',{
         title:'后台录入页',
         movies:movie
       })
+      
     })
   }
 });
@@ -155,14 +149,29 @@ router.get('/admin/update/:id',function (req,res) {
 
 //拿到前台过来的数据
 router.post('/admin/movie/new',function (req,res) {
-
+  
   var id=req.body._id;//判断是否已经存在改影片
   var movieObj=req.body;//获取表单请求，解析数据。
 
   var _movie;
 
-  if (id!=undefined){//前台提交的时候,如果id不是undefined,切在mongo中不存在这条数据,就会出这问题~直接nodejs服务崩溃了
+  if (id==undefined){//前台提交的时候,如果id不是undefined,切在mongo中不存在这条数据,就会出这问题~直接nodejs服务崩溃了
+    Movie.findById(id,function (err,movie) {//回调方法，拿到数据库中找的movie。
+      if (err){
+        console.log(err)
+      }
+      _movie=_.extend(movie,movieObj);//将数据合并，因为id式自动生成的，不会存在合并之后id有变化,
+      _movie.save(function (err,movie) {
+        if (err){
+          console.log(err)
+        }
+        res.redirect('/movie/'+movie._id)
 
+      })
+    })
+  
+  }
+  else{
     _movie=new Movie({
       title:movieObj.title,
       doctor:movieObj.doctor,
@@ -180,21 +189,6 @@ router.post('/admin/movie/new',function (req,res) {
       }
       res.redirect('/movie/'+movie._id)
 
-    })
-  }
-  else{
-    Movie.findById(id,function (err,movie) {//回调方法，拿到数据库中找的movie。
-      if (err){
-        console.log(err)
-      }
-      _movie=_.extend(movie,movieObj);//将数据合并，因为id式自动生成的，不会存在合并之后id有变化,
-      _movie.save(function (err,movie) {
-        if (err){
-          console.log(err)
-        }
-        res.redirect('/movie/'+movie._id)
-
-      })
     })
   }
   
