@@ -14,6 +14,7 @@ router.post('/signup',function (req, res) {
         }
         if (users){
             res.redirect('/');
+            alert('该用户名已经存在')
         }
         else{
             var user=new User({
@@ -30,6 +31,38 @@ router.post('/signup',function (req, res) {
     });
 
 });
+
+router.post('/signin',function (req, res) {
+    var _name=req.body.name;
+    var _password=req.body.password;
+    User.findOne({name:_name},function (err, user) {
+        if(err){
+            console.log(err)
+        }
+        if (!user){
+            res.redirect('/');
+            alert('您还没有注册~')
+        }
+        //引用一个实例方法，区别静态方法
+        user.comparePassword(_password,function (err, isMatch) {
+            if (err){
+                console.log(err)
+            }
+            if (isMatch){
+                console.log('is match')
+
+                res.json({
+                    success:1,
+                    name:_name
+                });
+                // var html='';
+                
+            }
+        })
+    })
+});
+
+
 
 //用户列表
 router.get('/list',function (req, res) {

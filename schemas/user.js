@@ -40,9 +40,18 @@ UserSchema.pre("save",function (next) {//每次存数据之前都会调用该方
             next();//调用next，将存储流程走下去，直到你运行下一次next()，内部处于暂停状态，但不影响外部运行。
         });
     });
-
 });
-UserSchema.statics={
+
+UserSchema.methods={
+    comparePassword:function (password, cb) {
+              bcrypt.compare(password,this.password,function (err, isMatch) {
+                  if(err) return cb(err);
+                  cb(null,isMatch);
+              })
+    }
+};
+
+UserSchema.statics={//静态方法模型就可以来调用
     fetch:function (cb) {
         return this.find({}).sort('meta.updateAt').exec(cb);//由于MovieSchema已经定义了meta.updateAt,exec(cb)执行完后回调函数。
         //exec(cb)意思是，执行查询并将查询结果传入回调函数cb。cb是回调函数，exec是发出调用回调函数的命令。
