@@ -1,4 +1,4 @@
-
+//模式对数据字段进行定义，书写模式的方法，一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力
 var mongoose = require('mongoose');
 var MovieSchema=new mongoose.Schema({
     title:String,
@@ -19,7 +19,6 @@ var MovieSchema=new mongoose.Schema({
             default:Date.now()
         }
     }
-
 });
 
 MovieSchema.pre("save",function (next) {//每次存数据之前都会调用该方法

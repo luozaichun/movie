@@ -277,16 +277,15 @@
 <script>
     $('#signin').on('click',function () {
         $.ajax({
-            type:'GET',
+            type:'post',
             url:'',
             success:function (result) {
                 if(result.success==1){
                     var html='';
-                    html+='<span>欢迎您！'+result.name+'</span>'
+                    html+='欢迎您！<a href="">'+result.name+'</a>'
                 }
                 $('.navbar-link').hide();
                 $('#sign').append(html);
-
             }
         })
     })

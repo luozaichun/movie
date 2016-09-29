@@ -5,12 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');//表单数据格式化,bodyParser中间件用来解析http请求体，是express默认使用的中间件之一。获取表单请求，将body里面的东西初始化一个对象
 var mongoose = require('mongoose');
-
+var mongoStore=require('connect-mongo')(express);
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
-mongoose.connect('mongodb://localhost/movie');
+var dbUrl='mongodb://localhost/movie';
+mongoose.connect(dbUrl);//连接数据库，数据库的名称设置为movie
 
 
 // view engine setup
@@ -27,6 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));//获取表单请求，解�
 
 
 app.use(cookieParser());
+app.use(express.session({
+  
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
